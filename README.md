@@ -7,6 +7,20 @@ Research-grade pipeline testing which lead-lag relationships between futures mar
 ## Problem statement
 Most backtests overstate causal structure between futures markets. This project measures which lead-lag edges survive out-of-sample, across regimes, after costs and multiple-testing correction, and reports negative results honestly.
 
+## Pipeline flowchart
+
+```mermaid
+flowchart TD
+    A[Phase 1: Data download + clean + ADF] --> B[Phase 2: Rolling Granger causality + FDR]
+    B --> C[Phase 3: Filtered HMM regimes]
+    C --> D[Phase 4: Walk-forward strategy + baselines + DSR/PBO]
+    D --> E[Phase 5: Optional LLM sentiment ablation]
+    E --> F[Phase 6: Dashboard + auto-generated README]
+    B --> G[Edge stability heatmap]
+    C --> H[Regime timeline]
+    D --> I[Equity curves + verdict]
+```
+
 ## Method
 1. Download and clean daily futures data (yfinance), align calendars, compute log returns, ADF tests.
 2. Rolling Granger causality (252-day windows, step 21, lags 1-5) with Benjamini-Hochberg FDR per window; edge stability.
