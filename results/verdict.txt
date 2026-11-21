@@ -1,0 +1,1 @@
+Strategy did NOT beat baselines out-of-sample: causal Sharpe 0.033 vs best baseline mean_reversion 0.684. DSR p-value=0.310; PBO=0.071. Negative result: the lead-lag signal does not survive costs/OOS under this protocol.
